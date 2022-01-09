@@ -225,20 +225,20 @@ void LoRaWAN_Init(void)
 {
   /* USER CODE BEGIN LoRaWAN_Init_1 */
 
-  /* USER CODE END LoRaWAN_Init_1 */
-#if defined(USE_BSP_DRIVER)
-  BSP_LED_Init(LED_BLUE);
-  BSP_LED_Init(LED_GREEN);
-  BSP_LED_Init(LED_RED);
-  BSP_PB_Init(BUTTON_SW2, BUTTON_MODE_EXTI);
-#elif defined(MX_BOARD_PSEUDODRIVER)
-  SYS_LED_Init(SYS_LED_BLUE);
-  SYS_LED_Init(SYS_LED_GREEN);
-  SYS_LED_Init(SYS_LED_RED);
-  SYS_PB_Init(SYS_BUTTON2, SYS_BUTTON_MODE_EXTI);
-#else
-#error user to provide its board code or to call his board driver functions
-#endif  /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
+//  /* USER CODE END LoRaWAN_Init_1 */
+//#if defined(USE_BSP_DRIVER)
+//  BSP_LED_Init(LED_BLUE);
+//  BSP_LED_Init(LED_GREEN);
+//  BSP_LED_Init(LED_RED);
+//  BSP_PB_Init(BUTTON_SW2, BUTTON_MODE_EXTI);
+//#elif defined(MX_BOARD_PSEUDODRIVER)
+//  SYS_LED_Init(SYS_LED_BLUE);
+//  SYS_LED_Init(SYS_LED_GREEN);
+//  SYS_LED_Init(SYS_LED_RED);
+//  SYS_PB_Init(SYS_BUTTON2, SYS_BUTTON_MODE_EXTI);
+//#else
+//#error user to provide its board code or to call his board driver functions
+//#endif  /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
 
   /* Get LoRa APP version*/
   APP_LOG(TS_OFF, VLEVEL_M, "APP_VERSION:        V%X.%X.%X\r\n",
@@ -436,20 +436,20 @@ static void OnRxData(LmHandlerAppData_t *appData, LmHandlerRxParams_t *params)
           {
             APP_LOG(TS_OFF, VLEVEL_H,   "LED OFF\r\n");
 
-#if defined(USE_BSP_DRIVER)
-            BSP_LED_Off(LED_RED) ;
-#elif defined(MX_BOARD_PSEUDODRIVER)
-            SYS_LED_Off(SYS_LED_RED) ;
-#endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
+//#if defined(USE_BSP_DRIVER)
+//            BSP_LED_Off(LED_RED) ;
+//#elif defined(MX_BOARD_PSEUDODRIVER)
+//            SYS_LED_Off(SYS_LED_RED) ;
+//#endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
           }
           else
           {
             APP_LOG(TS_OFF, VLEVEL_H, "LED ON\r\n");
-#if defined(USE_BSP_DRIVER)
-            BSP_LED_On(LED_RED) ;
-#elif defined(MX_BOARD_PSEUDODRIVER)
-            SYS_LED_On(SYS_LED_RED) ;
-#endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
+//#if defined(USE_BSP_DRIVER)
+//            BSP_LED_On(LED_RED) ;
+//#elif defined(MX_BOARD_PSEUDODRIVER)
+//            SYS_LED_On(SYS_LED_RED) ;
+//#endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
           }
         }
         break;
@@ -579,11 +579,11 @@ static void OnTxTimerLedEvent(void *context)
   /* USER CODE BEGIN OnTxTimerLedEvent_1 */
 
   /* USER CODE END OnTxTimerLedEvent_1 */
-#if defined(USE_BSP_DRIVER)
-  BSP_LED_Off(LED_GREEN) ;
-#else
-  SYS_LED_Off(SYS_LED_GREEN) ;
-#endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
+//#if defined(USE_BSP_DRIVER)
+//  BSP_LED_Off(LED_GREEN) ;
+//#else
+//  SYS_LED_Off(SYS_LED_GREEN) ;
+//#endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
   /* USER CODE BEGIN OnTxTimerLedEvent_2 */
 
   /* USER CODE END OnTxTimerLedEvent_2 */
@@ -594,11 +594,11 @@ static void OnRxTimerLedEvent(void *context)
   /* USER CODE BEGIN OnRxTimerLedEvent_1 */
 
   /* USER CODE END OnRxTimerLedEvent_1 */
-#if defined(USE_BSP_DRIVER)
-  BSP_LED_Off(LED_BLUE) ;
-#else
-  SYS_LED_Off(SYS_LED_BLUE) ;
-#endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
+//#if defined(USE_BSP_DRIVER)
+//  BSP_LED_Off(LED_BLUE) ;
+//#else
+//  SYS_LED_Off(SYS_LED_BLUE) ;
+//#endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
   /* USER CODE BEGIN OnRxTimerLedEvent_2 */
 
   /* USER CODE END OnRxTimerLedEvent_2 */
@@ -609,11 +609,11 @@ static void OnJoinTimerLedEvent(void *context)
   /* USER CODE BEGIN OnJoinTimerLedEvent_1 */
 
   /* USER CODE END OnJoinTimerLedEvent_1 */
-#if defined(USE_BSP_DRIVER)
-  BSP_LED_Toggle(LED_RED) ;
-#else
-  SYS_LED_Toggle(SYS_LED_RED) ;
-#endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
+//#if defined(USE_BSP_DRIVER)
+//  BSP_LED_Toggle(LED_RED) ;
+//#else
+//  SYS_LED_Toggle(SYS_LED_RED) ;
+//#endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
   /* USER CODE BEGIN OnJoinTimerLedEvent_2 */
 
   /* USER CODE END OnJoinTimerLedEvent_2 */
@@ -625,11 +625,11 @@ static void OnTxData(LmHandlerTxParams_t *params)
   /* USER CODE END OnTxData_1 */
   if ((params != NULL) && (params->IsMcpsConfirm != 0))
   {
-#if defined(USE_BSP_DRIVER)
-    BSP_LED_On(LED_GREEN) ;
-#elif defined(MX_BOARD_PSEUDODRIVER)
-    SYS_LED_On(SYS_LED_GREEN) ;
-#endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
+//#if defined(USE_BSP_DRIVER)
+//    BSP_LED_On(LED_GREEN) ;
+//#elif defined(MX_BOARD_PSEUDODRIVER)
+//    SYS_LED_On(SYS_LED_GREEN) ;
+//#endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
     UTIL_TIMER_Start(&TxLedTimer);
 
     APP_LOG(TS_OFF, VLEVEL_M, "\r\n###### ========== MCPS-Confirm =============\r\n");
@@ -662,11 +662,11 @@ static void OnJoinRequest(LmHandlerJoinParams_t *joinParams)
     {
       UTIL_TIMER_Stop(&JoinLedTimer);
 
-#if defined(USE_BSP_DRIVER)
-      BSP_LED_Off(LED_RED) ;
-#elif defined(MX_BOARD_PSEUDODRIVER)
-      SYS_LED_Off(SYS_LED_RED) ;
-#endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
+//#if defined(USE_BSP_DRIVER)
+//      BSP_LED_Off(LED_RED) ;
+//#elif defined(MX_BOARD_PSEUDODRIVER)
+//      SYS_LED_Off(SYS_LED_RED) ;
+//#endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
 
       APP_LOG(TS_OFF, VLEVEL_M, "\r\n###### = JOINED = ");
       if (joinParams->Mode == ACTIVATION_TYPE_ABP)
