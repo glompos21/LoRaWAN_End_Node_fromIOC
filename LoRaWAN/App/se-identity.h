@@ -95,7 +95,7 @@ extern "C" {
 /*!
  * end-device IEEE EUI (big endian)
  */
-#define LORAWAN_DEVICE_EUI                                 { 0x5F, 0x2D, 0x35, 0x52, 0x4D, 0x42, 0xB0, 0x0D }
+#define LORAWAN_DEVICE_EUI                                 { 0x5F, 0x2D, 0x35, 0x52, 0x4D, 0x42, 0xB0, 0xD0 }
 
 /*!
  * App/Join server IEEE EUI (big endian)

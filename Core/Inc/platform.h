@@ -29,9 +29,9 @@ extern "C" {
 
 /* Exported constants --------------------------------------------------------*/
 
-#define USE_BSP_DRIVER
+//#define USE_BSP_DRIVER
 /* USER CODE BEGIN EC */
-
+#define MX_BOARD_PSEUDODRIVER
 /* USER CODE END EC */
 
 /* Includes ------------------------------------------------------------------*/

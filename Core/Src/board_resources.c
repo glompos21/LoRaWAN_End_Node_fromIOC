@@ -22,6 +22,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "platform.h"
 #include "board_resources.h"
+#include "stm32wlxx_hal_exti.h"
 
 /* USER CODE BEGIN Includes */
 
@@ -63,6 +64,20 @@ static GPIO_TypeDef  *SYS_LED_PORT[SYS_LEDn] = {SYS_LED3_GPIO_PORT, SYS_LED2_GPI
   */
 static const uint16_t SYS_LED_PIN[SYS_LEDn] = {SYS_LED3_PIN, SYS_LED2_PIN, SYS_LED1_PIN, };
 
+/**
+  * @brief Ports button list
+  */
+static GPIO_TypeDef   *SYS_BUTTON_PORT[SYS_BUTTONn] = {SYS_BUTTON1_GPIO_PORT, SYS_BUTTON3_GPIO_PORT, SYS_BUTTON2_GPIO_PORT, };
+
+/**
+  * @brief Pins button list
+  */
+static const uint16_t  SYS_BUTTON_PIN[SYS_BUTTONn] = {SYS_BUTTON1_PIN, SYS_BUTTON3_PIN, SYS_BUTTON2_PIN, };
+
+/**
+  * @brief IRQ button IDs list
+  */
+static const IRQn_Type SYS_BUTTON_IRQn[SYS_BUTTONn] = {SYS_BUTTON1_EXTI_IRQn, SYS_BUTTON3_EXTI_IRQn, SYS_BUTTON2_EXTI_IRQn, };
 EXTI_HandleTypeDef sys_hpb_exti[SYS_BUTTONn];
 
 /* USER CODE BEGIN PV */
@@ -70,6 +85,23 @@ EXTI_HandleTypeDef sys_hpb_exti[SYS_BUTTONn];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
+/**
+  * @brief Button SW1 EXTI line detection callback.
+  * @return none
+  */
+static void SYS_BUTTON1_EXTI_Callback(void);
+
+/**
+  * @brief Button SW3 EXTI line detection callback.
+  * @return none
+  */
+static void SYS_BUTTON3_EXTI_Callback(void);
+
+/**
+  * @brief Button SW2 EXTI line detection callback.
+  * @return none
+  */
+static void SYS_BUTTON2_EXTI_Callback(void);
 
 /* USER CODE BEGIN PFP */
 
@@ -135,9 +167,12 @@ int32_t SYS_PB_Init(Sys_Button_TypeDef Button, Sys_ButtonMode_TypeDef ButtonMode
 {
   GPIO_InitTypeDef gpio_init_structure = {0};
 
-  static SYS_RES_EXTI_LineCallback button_callback[SYS_BUTTONn] = {};
-  static uint32_t button_interrupt_priority[SYS_BUTTONn] = {};
-  static const uint32_t button_exti_line[SYS_BUTTONn] = {};
+ // static SYS_RES_EXTI_LineCallback button_callback[SYS_BUTTONn] = {};
+ // static uint32_t button_interrupt_priority[SYS_BUTTONn] = {};
+ // static const uint32_t button_exti_line[SYS_BUTTONn] = {};
+ static SYS_RES_EXTI_LineCallback button_callback[SYS_BUTTONn] = {SYS_BUTTON1_EXTI_Callback, SYS_BUTTON2_EXTI_Callback, SYS_BUTTON3_EXTI_Callback};
+  static uint32_t button_interrupt_priority[SYS_BUTTONn] = {SYS_BUTTONx_IT_PRIORITY, SYS_BUTTONx_IT_PRIORITY, SYS_BUTTONx_IT_PRIORITY};
+  static const uint32_t button_exti_line[SYS_BUTTONn] = {SYS_BUTTON1_EXTI_LINE, SYS_BUTTON2_EXTI_LINE, SYS_BUTTON3_EXTI_LINE};
 
   /* Enable the SYS_BUTTON Clock */
   SYS_BUTTONx_GPIO_CLK_ENABLE(Button);
@@ -188,11 +223,34 @@ void SYS_PB_IRQHandler(Sys_Button_TypeDef Button)
   HAL_EXTI_IRQHandler(&sys_hpb_exti[Button]);
 }
 
+__weak void SYS_PB_Callback(Sys_Button_TypeDef Button)
+{
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(Button);
+
+  /* This function should be implemented by the user application.
+     It is called into this driver when an event on Button is triggered.*/
+}
+
 /* USER CODE BEGIN EF */
 
 /* USER CODE END EF */
 
 /* Private Functions Definition -----------------------------------------------*/
+static void SYS_BUTTON1_EXTI_Callback(void)
+{
+  SYS_PB_Callback(SYS_BUTTON1);
+}
+
+static void SYS_BUTTON3_EXTI_Callback(void)
+{
+  SYS_PB_Callback(SYS_BUTTON3);
+}
+
+static void SYS_BUTTON2_EXTI_Callback(void)
+{
+  SYS_PB_Callback(SYS_BUTTON2);
+}
 
 /* USER CODE BEGIN PrFD */
 
