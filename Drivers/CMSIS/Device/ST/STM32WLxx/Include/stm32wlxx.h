@@ -96,7 +96,7 @@
   */
 
 #if defined(STM32WL55xx)
-  #include "stm32wl55xx.h"
+  #include <stm32wl55xx.h.notUsed>
 #elif defined(STM32WLE5xx)
   #include "stm32wle5xx.h"
 #elif defined(STM32WL54xx)
