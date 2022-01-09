@@ -29,7 +29,7 @@ extern "C" {
 
 /* Exported constants --------------------------------------------------------*/
 
-#define USE_BSP_DRIVER
+//#define USE_BSP_DRIVER
 /* USER CODE BEGIN EC */
 
 /* USER CODE END EC */
@@ -46,7 +46,6 @@ extern "C" {
 #include "stm32wlxx_nucleo.h"
 #include "stm32wlxx_nucleo_radio.h"
 #endif /* defined(USE_BSP_DRIVER) */
-#include "board_resources.h"
 
 /* USER CODE BEGIN include */
 
