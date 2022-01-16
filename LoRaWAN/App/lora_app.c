@@ -490,11 +490,11 @@ static void SendTxData(void)
     // Error happened :(
   }
   uint32_t test=1233;
-  APP_LOG(TS_ON, VLEVEL_L, "Temp: %u RH: %u %u \r\n",((uint32_t)tempC),((uint32_t)humidity1),((uint32_t)test));
+//  APP_LOG(TS_ON, VLEVEL_L, "Temp: %u RH: %u %u \r\n",((uint32_t)tempC),((uint32_t)humidity1),((uint32_t)test));
 //  sprintf((char*)buf, "%u %u \r\n",((uint32_t)tempC),((uint32_t)humidity));
 //  HAL_UART_Transmit(&huart2, buf, strlen((char*)buf), HAL_MAX_DELAY);
   // Wait
-    HAL_Delay(500);
+//    HAL_Delay(500);
 
 
 

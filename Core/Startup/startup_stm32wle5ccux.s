@@ -1,8 +1,8 @@
 /**
   ******************************************************************************
-  * @file      startup_stm32wl55xx_cm4.s
+  * @file      startup_stm32wle5xx.s
   * @author    MCD Application Team
-  * @brief     STM32WL55xx devices Cortex-M4 vector table for GCC toolchain.
+  * @brief     STM32WLE5xx devices vector table for GCC toolchain.
   *            This module performs:
   *                - Set the initial SP
   *                - Set the initial PC == Reset_Handler,
@@ -14,12 +14,13 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2020(-2021) STMicroelectronics.
-  * All rights reserved.
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
   *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
+  * This software component is licensed by ST under Apache License, Version 2.0,
+  * the "License"; You may not use this file except in compliance with the
+  * License. You may obtain a copy of the License at:
+  *                        opensource.org/licenses/Apache-2.0
   *
   ******************************************************************************
   */
@@ -120,7 +121,7 @@ Infinite_Loop:
 
 /******************************************************************************
 *
-* The STM32WL55xx Cortex-M4 vector table.  Note that the proper constructs
+* The STM32WLE5xx vector table.  Note that the proper constructs
 * must be placed on this to ensure that it ends up at physical address
 * 0x0000.0000.
 *
@@ -166,7 +167,7 @@ g_pfnVectors:
   .word	DMA1_Channel7_IRQHandler             			/* DMA1 channel 7 interrupt                           */
   .word	ADC_IRQHandler                       			/* ADC interrupt                                      */
   .word	DAC_IRQHandler                       			/* DAC interrupt                                      */
-  .word	C2SEV_PWR_C2H_IRQHandler             			/* CPU M0+ SEV Interrupt                              */
+  .word	0                                    			/* Reserved                                           */
   .word	COMP_IRQHandler                      			/* COMP1 and COMP2 interrupt through EXTI             */
   .word	EXTI9_5_IRQHandler                   			/* EXTI line 9_5 interrupt                            */
   .word	TIM1_BRK_IRQHandler                  			/* Timer 1 break interrupt                            */
@@ -191,8 +192,8 @@ g_pfnVectors:
   .word	RTC_Alarm_IRQHandler                 			/* RTC Alarms A & B interrupt                         */
   .word	LPTIM3_IRQHandler                    			/* LPtimer 3 global interrupt                         */
   .word	SUBGHZSPI_IRQHandler                 			/* SUBGHZSPI global interrupt                         */
-  .word	IPCC_C1_RX_IRQHandler                			/* IPCC CPU1 RX occupied interrupt                    */
-  .word	IPCC_C1_TX_IRQHandler                			/* IPCC CPU1 RX free interrupt                        */
+  .word	0                                    			/* Reserved                                           */
+  .word	0                                    			/* Reserved                                           */
   .word	HSEM_IRQHandler                      			/* Semaphore interrupt 0 to CPU1                      */
   .word	I2C3_EV_IRQHandler                   			/* I2C3 event interrupt                               */
   .word	I2C3_ER_IRQHandler                   			/* I2C3 error interrupt                               */
@@ -304,9 +305,6 @@ g_pfnVectors:
 	.weak	DAC_IRQHandler
 	.thumb_set DAC_IRQHandler,Default_Handler
 
-	.weak	C2SEV_PWR_C2H_IRQHandler
-	.thumb_set C2SEV_PWR_C2H_IRQHandler,Default_Handler
-
 	.weak	COMP_IRQHandler
 	.thumb_set COMP_IRQHandler,Default_Handler
 
@@ -378,12 +376,6 @@ g_pfnVectors:
 
 	.weak	SUBGHZSPI_IRQHandler
 	.thumb_set SUBGHZSPI_IRQHandler,Default_Handler
-
-	.weak	IPCC_C1_RX_IRQHandler
-	.thumb_set IPCC_C1_RX_IRQHandler,Default_Handler
-
-	.weak	IPCC_C1_TX_IRQHandler
-	.thumb_set IPCC_C1_TX_IRQHandler,Default_Handler
 
 	.weak	HSEM_IRQHandler
 	.thumb_set HSEM_IRQHandler,Default_Handler
